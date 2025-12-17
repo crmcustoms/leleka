@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 000 км до себе</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 25px;
+            }
+        }
+
+        /* Hero Section - Black */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('media/IMG_8625.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            max-width: 900px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-pretitle {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 1;
+            letter-spacing: -3px;
+            word-spacing: 9999px;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            margin-bottom: 50px;
+            opacity: 0.85;
+            line-height: 1.5;
+            font-weight: 300;
+            max-width: 700px;
+        }
+
+        .hero-quote {
+            font-size: 32px;
+            font-style: italic;
+            margin-bottom: 50px;
+            opacity: 0.7;
+            font-weight: 300;
+            max-width: 700px;
+            line-height: 1.4;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 45px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-filled {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        .btn-filled:hover {
+            background: transparent;
+            color: #fff;
+        }
+
+        /* Section Spacing */
+        .section {
+            padding: 150px 0;
+        }
+
+        .section.white {
+            background: #fff;
+        }
+
+        .section.black {
+            background: #000;
+            color: #fff;
+        }
+
+        /* Section Headers */
+        .section-pretitle {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 50px;
+            letter-spacing: -2px;
+        }
+
+        .section-title.small {
+            font-size: 48px;
+        }
+
+        /* Pain Section - White */
+        .pain-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .pain-left {
+            max-width: 500px;
+        }
+
+        .pain-list {
+            margin-top: 60px;
+        }
+
+        .pain-item {
+            font-size: 20px;
+            line-height: 1.8;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .pain-item:first-child {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .pain-image {
+            width: 100%;
+            border-radius: 2px;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .pain-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Value Section - Black */
+        .value-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .value-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 2px;
+            overflow: hidden;
+            order: -1;
+        }
+
+        .value-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .value-content {
+            max-width: 500px;
+        }
+
+        .value-text {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 25px;
+        }
+
+        /* Formats Section - White */
+        .formats-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .format-card {
+            background: #f9f9f9;
+            padding: 50px 40px;
+            border-radius: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+        }
+
+        .format-card:hover {
+            background: #e8e8e8;
+            transform: translateY(-10px);
+        }
+
+        .format-icon {
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+
+        .format-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .format-type {
+            font-size: 13px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .format-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1;
+        }
+
+        .format-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .format-benefits {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 40px;
+            flex: 1;
+        }
+
+        .format-benefits li {
+            list-style: none;
+            padding: 10px 0;
+            padding-left: 0;
+        }
+
+        .format-benefits li:before {
+            content: '—';
+            margin-right: 10px;
+            color: #000;
+        }
+
+        .format-card.featured {
+            background: #000;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .format-card.featured:hover {
+            background: #1a1a1a;
+        }
+
+        .format-card.featured .format-type {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .format-card.featured .format-description {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .format-card.featured .format-benefits {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .format-card.featured .format-benefits li:before {
+            color: #fff;
+        }
+
+        .format-badge {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: #000;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .format-card.featured .format-badge {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Gallery Section - Black */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Closing Section - White */
+        .closing-content {
+            max-width: 900px;
+        }
+
+        .closing-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 50px;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .closing-text {
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            max-width: 700px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            opacity: 0.5;
+            font-size: 13px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .section-title {
+                font-size: 56px;
+            }
+
+            .section-title.small {
+                font-size: 36px;
+            }
+
+            .pain-section,
+            .value-section,
+            .formats-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .formats-header {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .format-card.featured {
+                transform: scale(1);
+            }
+
+            .hero h1 {
+                font-size: 72px;
+            }
+
+            .closing-title {
+                font-size: 56px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 42px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-quote {
+                font-size: 24px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pain-item,
+            .value-text {
+                font-size: 16px;
+            }
+
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-pretitle">Мотиваційний роман · тревелог</p>
+                <h1>10 000<br>км<br>до себе</h1>
+                <p class="hero-subtitle">Книга для тих, хто щоранку їде не туди. Про офіс, втечу з дня бабака і дорогу, яка починається всередині.</p>
+                <p class="hero-quote">«Я не тікав від роботи. Я тікав від життя без життя»</p>
+                <p style="font-size: 16px; margin-bottom: 40px; opacity: 0.7;">Без гуру. Без інфоциганства. З самоіронією і правдою.</p>
+                <div class="hero-cta">
+                    <a href="#formats" class="btn btn-filled">Обрати формат</a>
+                    <button class="btn">Почитати безкоштовно</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Section -->
+    <section class="section white">
+        <div class="container">
+            <div class="pain-section">
+                <div class="pain-left">
+                    <p class="section-pretitle">Про кого ця книга</p>
+                    <h2 class="section-title small">Це про тебе, якщо</h2>
+                    <div class="pain-list">
+                        <div class="pain-item">Ти живеш від п'ятниці до п'ятниці і ненавидиш будильник</div>
+                        <div class="pain-item">Робота нормальна, але життя десь загубилось</div>
+                        <div class="pain-item">Зона комфорту давно стала пасткою</div>
+                    </div>
+                </div>
+                <div class="pain-image">
+                    <img src="media/IMG_8637.jpg" alt="Подорож">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Section -->
+    <section class="section black">
+        <div class="container">
+            <div class="value-section">
+                <div class="value-image">
+                    <img src="media/IMG_8639.jpg" alt="Автор на мотоциклі">
+                </div>
+                <div class="value-content">
+                    <p class="section-pretitle">Суть книги</p>
+                    <h2 class="section-title small">Що це за книга</h2>
+                    <p class="value-text">Автобіографічна історія звичайної людини.</p>
+                    <p class="value-text">Мотоцикл тут — не герой, а привід залишитись наодинці з собою.</p>
+                    <p class="value-text">Читається швидко, але осідає надовго.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formats Section -->
+    <section class="section white" id="formats">
+        <div class="container">
+            <div class="formats-header">
+                <div>
+                    <p class="section-pretitle">Виберіть свій шлях</p>
+                    <h2 class="section-title small">Обери свій формат</h2>
+                </div>
+                <div style="padding-top: 10px;">
+                    <p style="font-size: 18px; line-height: 1.7; color: #666;">Три варіанти, щоб вибрати той, який підходить саме тобі. Кожен формат — це свій досвід</p>
+                </div>
+            </div>
+            <div class="formats-grid">
+                <!-- Format 1 -->
+                <div class="format-card">
+                    <div class="format-icon"></div>
+                    <h3 class="format-name">Стелс-режим</h3>
+                    <p class="format-type">EPUB / PDF</p>
+                    <p class="format-price">199–249 грн</p>
+                    <p class="format-description">Читається швидше, ніж річний звіт. Ідеально для метро і робочого ноутбука.</p>
+                    <ul class="format-benefits">
+                        <li>Миттєве отримання</li>
+                        <li>Читання з телефону</li>
+                        <li>Нуль ваги в рюкзаку</li>
+                    </ul>
+                    <button class="btn" style="width: 100%; margin-top: auto;">Обрати</button>
+                </div>
+
+                <!-- Format 2 - Featured -->
+                <div class="format-card featured">
+                    <div class="format-badge">ХІТ</div>
+                    <div class="format-icon"></div>
+                    <h3 class="format-name">Вихід з Матриці</h3>
+                    <p class="format-type">Друкована книга + закладка</p>
+                    <p class="format-price">390–450 грн</p>
+                    <p class="format-description">Тверда обкладинка замість офісного ковроліну. Антидепресант на полиці.</p>
+                    <ul class="format-benefits">
+                        <li>Якісний друк</li>
+                        <li>Авторська закладка</li>
+                        <li>Фізичне відчуття «справжнього»</li>
+                    </ul>
+                    <button class="btn btn-filled" style="width: 100%; margin-top: auto;">Купити</button>
+                </div>
+
+                <!-- Format 3 -->
+                <div class="format-card">
+                    <div class="format-icon"></div>
+                    <h3 class="format-name">Повний бак</h3>
+                    <p class="format-type">VIP / Gift Edition</p>
+                    <p class="format-price">650–800 грн</p>
+                    <p class="format-description">Персональний набір для зміни життя або сильний подарунок.</p>
+                    <ul class="format-benefits">
+                        <li>Автограф з меседжем</li>
+                        <li>Стікери Office Escape</li>
+                        <li>Плейлист подорожі</li>
+                        <li>Листівка з реальним кадром</li>
+                    </ul>
+                    <button class="btn" style="width: 100%; margin-top: auto;">Хочу максимум</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section black">
+        <div class="container">
+            <p class="section-pretitle">Подорож автора</p>
+            <h2 class="section-title">Моменти зі шляху</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="media/IMG_8625.jpg" alt="Подорож">
+                </div>
+                <div class="gallery-item">
+                    <img src="media/IMG_8638.jpg" alt="Подорож">
+                </div>
+                <div class="gallery-item">
+                    <img src="media/IMG_20251121_120404.jpg" alt="Подорож">
+                </div>
+                <div class="gallery-item">
+                    <img src="media/IMG_8643.jpg" alt="Подорож">
+                </div>
+                <div class="gallery-item">
+                    <img src="media/IMG_20251121_120418.jpg" alt="Подорож">
+                </div>
+                <div class="gallery-item">
+                    <img src="media/IMG_20251121_120452.jpg" alt="Подорож">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="section white">
+        <div class="container">
+            <div class="closing-content">
+                <h2 class="closing-title">Наостанок</h2>
+                <p class="closing-text">Ти не зобов'язаний міняти життя завтра. Але маєш право хоча б почитати про того, хто наважився.</p>
+                <a href="#formats" class="btn btn-filled">Почати подорож</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 10 000 км до себе. Просто чесна дорога.</p>
+        </div>
+    </footer>
+</body>
+</html>
