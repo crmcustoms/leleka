@@ -4,3 +4,5 @@ media/
 *.tif
 *.tiff
 *.png
+!img/105722.png
+!img/5fqs26swc0.png
