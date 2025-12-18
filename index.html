@@ -236,7 +236,7 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 15px;
-            opacity: 0.5;
+            color: #dc2626;
         }
 
         .section-title {
@@ -477,8 +477,8 @@
         }
 
         .format-card.featured .format-badge {
-            background: #fff;
-            color: #000;
+            background: #dc2626;
+            color: #fff;
         }
 
         /* Gallery Section - Black */
@@ -652,6 +652,40 @@
             background: transparent;
             color: #dc2626;
             font-weight: 600;
+        }
+
+        /* Scroll to Top Button */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 999;
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background: #b91c1c;
+            transform: translateY(-5px);
+        }
+
+        #scrollTopBtn.show {
+            display: flex;
         }
 
         /* Footer */
@@ -957,5 +991,28 @@
             <p>© 10 000 км до себе. Просто чесна дорога.</p>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" title="Вверх">↑</button>
+
+    <script>
+        // Scroll to top button functionality
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
