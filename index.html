@@ -443,6 +443,118 @@
             max-width: 700px;
         }
 
+        /* About Author Section */
+        .about-author {
+            padding: 150px 0;
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Parallax Purchase Section */
+        .parallax-purchase {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .parallax-purchase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('img/IMG_8625.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.25;
+            z-index: 0;
+            filter: grayscale(100%);
+        }
+
+        .parallax-purchase::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .parallax-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 100px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
+
+        .parallax-title strong {
+            color: #dc2626;
+        }
+
+        .parallax-text {
+            font-size: 28px;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .parallax-text mark {
+            background: transparent;
+            color: #dc2626;
+            font-weight: 600;
+        }
+
         /* Footer */
         footer {
             background-color: #000;
@@ -539,6 +651,19 @@
 
             .container {
                 padding: 0 20px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .parallax-title {
+                font-size: 56px;
+            }
+
+            .parallax-text {
+                font-size: 20px;
             }
         }
     </style>
@@ -669,24 +794,50 @@
             <h2 class="section-title">Моменти зі шляху</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="img/IMG_8625.jpg" alt="Подорож">
+                    <img src="img/123213.jpg" alt="Подорож">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/IMG_8638.jpg" alt="Подорож">
+                    <img src="img/IMG_20180428_102352242.jpg" alt="Подорож">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/IMG_20251121_120404.jpg" alt="Подорож">
+                    <img src="img/20230718105231_IMG_2123.jpg" alt="Подорож">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/IMG_8643.jpg" alt="Подорож">
+                    <img src="img/20230718105231_IMG_2123.jpg" alt="Подорож">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/IMG_20251121_120418.jpg" alt="Подорож">
+                    <img src="img/20230831111423_IMG_6965.jpg" alt="Подорож">
                 </div>
                 <div class="gallery-item">
-                    <img src="img/IMG_20251121_120452.jpg" alt="Подорож">
+                    <img src="img/20230905102508_IMG_7483.jpg" alt="Подорож">
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- About Author Section -->
+    <section class="about-author">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Про автора</h2>
+                    <p>Звичайна людина, яка вирішила не просто мріяти про змінення, а й дійсно змінитися.</p>
+                    <p>Мотоцикліст, письменник, мандрівник. Людина, яка обрала дорогу замість офісу.</p>
+                    <p>Через 10 000 км подорожі автор знайшов відповіді на питання, які його мучили роками. І тепер готовий поділитися цією історією з тобою.</p>
+                </div>
+                <div class="about-image">
+                    <img src="img/IMG_8639.jpg" alt="Автор">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Purchase Section -->
+    <section class="parallax-purchase">
+        <div class="parallax-content">
+            <h1 class="parallax-title">Готовий до <strong>змінення</strong>?</h1>
+            <p class="parallax-text">Твоя <mark>подорож</mark> починається з одного кроку</p>
+            <a href="#formats" class="btn btn-filled">Обрати формат</a>
         </div>
     </section>
 
