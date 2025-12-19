@@ -806,6 +806,131 @@
             font-size: 14px;
         }
 
+        /* Quick Order Form */
+        #quickOrderForm {
+            padding: 40px;
+            background: #fff;
+            border-radius: 0;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        #quickOrderForm h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-modal.show {
+            display: flex;
+        }
+
+        .success-content {
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            padding: 80px 60px;
+            border-radius: 0;
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #dc2626;
+            position: relative;
+            animation: successSlideIn 0.5s ease;
+        }
+
+        @keyframes successSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: successBounce 0.6s ease;
+        }
+
+        @keyframes successBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .success-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .success-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .success-details {
+            background: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #dc2626;
+            text-align: left;
+        }
+
+        .success-details p {
+            font-size: 14px;
+            color: #333;
+            margin: 8px 0;
+        }
+
+        .success-details strong {
+            color: #dc2626;
+        }
+
+        .success-button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .success-button:hover {
+            background: #b91c1c;
+            transform: translateY(-3px);
+        }
+
         /* Footer */
         footer {
             background-color: #000;
@@ -1155,11 +1280,72 @@
         </div>
     </div>
 
+    <!-- Quick Order Modal -->
+    <div id="quickOrderModal" class="modal">
+        <div id="quickOrderForm" class="modal-content">
+            <button class="modal-close" onclick="closeQuickOrderModal()">✕</button>
+            <h3>Швидке замовлення</h3>
+            <form id="quickOrderFormElement">
+                <div class="form-group">
+                    <label for="quickName">Ім'я</label>
+                    <input type="text" id="quickName" name="name" required placeholder="Ваше ім'я">
+                </div>
+
+                <div class="form-group">
+                    <label for="quickPhone">Телефон</label>
+                    <input type="tel" id="quickPhone" name="phone" required placeholder="+380...">
+                </div>
+
+                <div class="form-loading" id="quickFormLoading" style="display: none;">
+                    Відправка...
+                </div>
+
+                <button type="submit" class="form-submit">Замовити</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✨</div>
+            <h2 class="success-title">Спасибі за замовлення!</h2>
+            <p class="success-text">Наш менеджер вже отримав ваше замовлення та їде упаковувати посилку на повних 200 км/год! 🚗💨</p>
+            <div class="success-details">
+                <p><strong>Очікуваний час доставки:</strong> 3-5 робочих днів</p>
+                <p><strong>Ми вам напишемо на:</strong> <span id="successPhone">номер телефону</span></p>
+                <p><strong>Стан замовлення:</strong> Обробляється ✓</p>
+            </div>
+            <button class="success-button" onclick="closeSuccessModal()">Чудово!</button>
+        </div>
+    </div>
+
     <!-- Scroll to Top Button -->
     <button id="scrollTopBtn" title="Вверх">↑</button>
 
     <script>
-        // Order Modal Functions
+        // ===== Quick Order Modal Functions =====
+        function openQuickOrderModal() {
+            document.getElementById('quickOrderModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickOrderModal() {
+            document.getElementById('quickOrderModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== Success Modal Functions =====
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.add('show');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== Order Modal Functions =====
         function openOrderModal() {
             document.getElementById('orderModal').classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -1174,6 +1360,42 @@
         document.getElementById('orderModal').addEventListener('click', function(event) {
             if (event.target === this) {
                 closeOrderModal();
+            }
+        });
+
+        // Quick order form submission
+        document.getElementById('quickOrderFormElement').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formLoading = document.getElementById('quickFormLoading');
+            const phone = document.getElementById('quickPhone').value;
+            const name = document.getElementById('quickName').value;
+
+            const formData = {
+                name: name,
+                phone: phone,
+                type: 'quick_order',
+                timestamp: new Date().toISOString()
+            };
+
+            formLoading.style.display = 'block';
+
+            try {
+                await fetch('https://10000km.planfix.ua/webhook/json/a4wv-uecd-lj5l-cot6', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                closeQuickOrderModal();
+                document.getElementById('successPhone').textContent = phone;
+                showSuccessModal();
+                document.getElementById('quickOrderFormElement').reset();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Помилка мережі. Спробуйте ще раз.');
+            } finally {
+                formLoading.style.display = 'none';
             }
         });
 
@@ -1209,10 +1431,12 @@
                 });
 
                 if (response.ok) {
-                    // Success
-                    alert('Дякуємо! Ваше замовлення отримано. Ми з вами скоро зв\'яжемося!');
-                    document.getElementById('orderForm').reset();
+                    // Success - show success modal
+                    const phone = document.getElementById('phone').value;
+                    document.getElementById('successPhone').textContent = phone;
                     closeOrderModal();
+                    showSuccessModal();
+                    document.getElementById('orderForm').reset();
                 } else {
                     alert('Помилка при відправці. Будь ласка, спробуйте ще раз.');
                 }
@@ -1228,7 +1452,12 @@
 
         // Add click handlers to all purchase buttons
         document.querySelectorAll('.btn, .btn-filled, .btn-minimal').forEach(button => {
-            if (button.textContent.includes('Купити') ||
+            if (button.textContent.includes('Замовити зараз')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openQuickOrderModal();
+                });
+            } else if (button.textContent.includes('Купити') ||
                 button.textContent.includes('Обрати формат') ||
                 button.textContent.includes('Хочу максимум') ||
                 button.textContent.includes('Почати подорож')) {
