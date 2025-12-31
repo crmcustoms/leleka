@@ -931,6 +931,90 @@
             transform: translateY(-3px);
         }
 
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 0;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-author {
+            font-weight: 700;
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .review-role {
+            font-size: 13px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .review-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .review-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .review-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .review-text li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .review-text li:before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1200px) {
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Footer */
         footer {
             background-color: #000;
@@ -1214,6 +1298,68 @@
             <h1 class="parallax-title">Готовий до <strong>змін</strong>?</h1>
             <p class="parallax-text">Твоя <mark>подорож</mark> починається з одного кроку</p>
             <a href="#formats" class="btn-minimal">Обрати формат</a>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section white">
+        <div class="container">
+            <p class="section-pretitle">Що кажуть читачі</p>
+            <h2 class="section-title small">Відгуки</h2>
+
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <p class="review-author">Наталія Приходько</p>
+                    <p class="review-role">Трейдер, коуч з інвестицій</p>
+                    <h3 class="review-title">"Та ну! Це ж про мене!" – або книга, яку я не могла відкласти</h3>
+                    <div class="review-text">
+                        <p><strong>ШИКАРДОСНО!</strong> Це та книга, яку я читала до 2-ї ночі, взагалі не дивлячись на сторінки. Просто плила за текстом, а коли він скінчився – була здивована і засмучена.</p>
+
+                        <p>Ще мене так зачепило:</p>
+
+                        <ul>
+                            <li><strong>Офісний планктон в дії:</strong> Автор настільки точно описав це виснажливе відчуття, цю «тупорилу відповідальність», коли навіть у відпустці вилазиш у робочу пошту. Бо «треба»! Бо ж мама вчила бути відповідальною! А потім ми дивуємося, звідки це вигорання. Я себе впізнала в кожному слові.</li>
+                            <li><strong>Таргани подорожують з тобою:</strong> Ідея про те, що куди б ти не втік – твої «таргани» в голові лишаються з тобою, вразила мене своєю простою жорсткістю.</li>
+                            <li><strong>Цінуй те, що є:</strong> Момент про вибір між диваном/котом і чимось епічним – це такий простий, але потужний урок про щастя тут і зараз.</li>
+                        </ul>
+
+                        <p>Автор вміє говорити про біль так, що ти одночасно ниєш від впізнання і регочеш. Книга-дзеркало, книга-терапія і книга-катарсис. <strong>Сильно, чесно і неймовірно смішно.</strong></p>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <p class="review-author">Валерій Жванко</p>
+                    <p class="review-role">Вчитель</p>
+                    <h3 class="review-title">Книга-вчинок, яку неможливо відкласти</h3>
+                    <div class="review-text">
+                        <p>Цю книгу я «проковтнув» в один день. Вона захоплює з перших сторінок і тримає в напрузі до самого кінця, не даючи відірватись.</p>
+
+                        <p>Це не просто книга, це — <strong>вчинок</strong>. Відчувається, що вона створена щиро, з турботою про якість: міцна ідея, чітка структура та потужне мотивуюче ядро. Такі роботи не лише розважають, а й здатні змінювати світогляд.</p>
+
+                        <p>Найцінніше в ній — <strong>відчуття, що вона може рятувати життя</strong>. Вона стає тим якорем або поштовхом, якого так бракує людині у складний момент. Це рідкісна і дуже важлива якість.</p>
+
+                        <p>Автору — велика подяка і одне прохання: <strong>не зупинятися</strong>. Світ потребує більше таких історій. Рекомендую всім, хто шукає не просто читання, а значущий досвід і мотивацію до дій.</p>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <p class="review-author">Дмитро Заліщик</p>
+                    <p class="review-role">Програміст</p>
+                    <h3 class="review-title">Діалог з самим собою</h3>
+                    <div class="review-text">
+                        <p>Ця книга стала для мене набагато більшим, ніж просто текст. Це — <strong>діалог</strong>. Діалог з самим собою.</p>
+
+                        <p>Вона знайшла відгук у мені по багатьом життєвим питанням. Найбільше мене зачепила тема пошуку себе. Автор описує цей шлях настільки вірно та проникливо, що я безперервно ловив себе на думці: <em>"Так, я це відчував! Я через це проходив!"</em></p>
+
+                        <p>Книга написана щиро та без прикрас, що робить її дуже живою та правдивою. Вона не дає готових відповідей, але ставить потрібні запитання, змушуючи рефлексувати.</p>
+
+                        <p>Після прочитання залишилося <strong>відчуття тепла та бажання продовжити цю розмову</strong> вже особисто. Дуже хотілося б якось поспілкуватися з автором за кавою. А поки що — щиро дякую за цю важливу працю. <strong>Рекомендую всім.</strong></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
