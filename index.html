@@ -1033,6 +1033,40 @@
             color: #b91c1c;
         }
 
+        /* Review Pagination */
+        .review-card.hidden {
+            display: none;
+        }
+
+        .reviews-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .pagination-btn {
+            background: none;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pagination-btn.active {
+            background: #dc2626;
+            color: #fff;
+        }
+
+        .pagination-btn:hover:not(.active) {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
         @media (max-width: 1200px) {
             .reviews-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1405,6 +1439,12 @@
                     <button class="review-toggle" onclick="toggleReview(this)">Читати далі</button>
                 </div>
             </div>
+
+            <!-- Pagination -->
+            <div class="reviews-pagination" id="reviewsPagination">
+                <button class="pagination-btn active" onclick="switchReviewPage(1)" data-page="1">Сторінка 1</button>
+                <button class="pagination-btn" onclick="switchReviewPage(2)" data-page="2">Сторінка 2</button>
+            </div>
         </div>
     </section>
 
@@ -1707,6 +1747,45 @@
             reviewContent.classList.toggle('expanded');
             button.textContent = reviewContent.classList.contains('expanded') ? 'Сховати' : 'Читати далі';
         }
+
+        // ===== Review Pagination Function =====
+        function switchReviewPage(page) {
+            const reviewCards = document.querySelectorAll('.review-card');
+            const paginationBtns = document.querySelectorAll('.pagination-btn');
+
+            // Update button states
+            paginationBtns.forEach(btn => {
+                if (parseInt(btn.dataset.page) === page) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Show/hide reviews based on page
+            reviewCards.forEach((card, index) => {
+                if (page === 1) {
+                    // Page 1: Show reviews 0, 1, 2 (first 3)
+                    if (index < 3) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                } else if (page === 2) {
+                    // Page 2: Show only review 3 (4th review)
+                    if (index === 3) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Initialize reviews on page load
+        window.addEventListener('load', () => {
+            switchReviewPage(1);
+        });
     </script>
 </body>
 </html>
