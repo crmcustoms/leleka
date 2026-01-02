@@ -933,11 +933,17 @@
         }
 
         /* Reviews Section */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+        /* Carousel Container */
+        .reviews-carousel {
+            overflow: hidden;
             margin-top: 60px;
+        }
+
+        .reviews-grid {
+            display: flex;
+            gap: 40px;
+            transition: transform 0.5s ease;
+            width: fit-content;
         }
 
         .review-card {
@@ -947,6 +953,8 @@
             border: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
+            flex: 0 0 calc(33.333% - 27px);
+            min-width: 0;
         }
 
         .review-author {
@@ -1033,51 +1041,42 @@
             color: #b91c1c;
         }
 
-        /* Review Pagination */
-        .review-card.hidden {
-            display: none;
-        }
-
-        .reviews-pagination {
+        /* Carousel Controls */
+        .carousel-controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 30px;
             margin-top: 50px;
         }
 
-        .pagination-btn {
+        .carousel-btn {
             background: none;
             border: 2px solid #dc2626;
             color: #dc2626;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: 600;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
-        .pagination-btn.active {
+        .carousel-btn:hover {
             background: #dc2626;
             color: #fff;
+            transform: scale(1.1);
         }
 
-        .pagination-btn:hover:not(.active) {
-            background: rgba(220, 38, 38, 0.1);
+        .carousel-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
-        @media (max-width: 1200px) {
-            .reviews-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .reviews-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Carousel stays 3 columns on all sizes */
 
         /* Footer */
         footer {
@@ -1371,6 +1370,7 @@
             <p class="section-pretitle">Що кажуть читачі</p>
             <h2 class="section-title small">Відгуки</h2>
 
+            <div class="reviews-carousel">
             <div class="reviews-grid">
                 <!-- Review 1 -->
                 <div class="review-card">
@@ -1440,10 +1440,11 @@
                 </div>
             </div>
 
-            <!-- Pagination -->
-            <div class="reviews-pagination" id="reviewsPagination">
-                <button class="pagination-btn active" onclick="switchReviewPage(1)" data-page="1">Сторінка 1</button>
-                <button class="pagination-btn" onclick="switchReviewPage(2)" data-page="2">Сторінка 2</button>
+            <!-- Carousel Navigation -->
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="previousReview()">←</button>
+                <button class="carousel-btn next" onclick="nextReview()">→</button>
+            </div>
             </div>
         </div>
     </section>
@@ -1748,43 +1749,40 @@
             button.textContent = reviewContent.classList.contains('expanded') ? 'Сховати' : 'Читати далі';
         }
 
-        // ===== Review Pagination Function =====
-        function switchReviewPage(page) {
-            const reviewCards = document.querySelectorAll('.review-card');
-            const paginationBtns = document.querySelectorAll('.pagination-btn');
+        // ===== Review Carousel Functions =====
+        let currentReviewPosition = 0;
+
+        function updateCarouselPosition() {
+            const reviewsGrid = document.querySelector('.reviews-grid');
+            const reviewCard = document.querySelector('.review-card');
+            const cardWidth = reviewCard.offsetWidth;
+            const gap = 40;
+            const shift = currentReviewPosition * (cardWidth + gap);
+
+            reviewsGrid.style.transform = `translateX(-${shift}px)`;
 
             // Update button states
-            paginationBtns.forEach(btn => {
-                if (parseInt(btn.dataset.page) === page) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            // Show/hide reviews based on page
-            reviewCards.forEach((card, index) => {
-                if (page === 1) {
-                    // Page 1: Show reviews 0, 1, 2 (first 3)
-                    if (index < 3) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                } else if (page === 2) {
-                    // Page 2: Show only review 3 (4th review)
-                    if (index === 3) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                }
-            });
+            document.querySelector('.carousel-btn.prev').disabled = currentReviewPosition === 0;
+            document.querySelector('.carousel-btn.next').disabled = currentReviewPosition === 1;
         }
 
-        // Initialize reviews on page load
+        function nextReview() {
+            if (currentReviewPosition < 1) {
+                currentReviewPosition++;
+                updateCarouselPosition();
+            }
+        }
+
+        function previousReview() {
+            if (currentReviewPosition > 0) {
+                currentReviewPosition--;
+                updateCarouselPosition();
+            }
+        }
+
+        // Initialize carousel on page load
         window.addEventListener('load', () => {
-            switchReviewPage(1);
+            updateCarouselPosition();
         });
     </script>
 </body>
